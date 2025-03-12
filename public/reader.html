@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookWorm - Reader</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-book">
+            <div class="book-page"></div>
+            <div class="book-page"></div>
+            <div class="book-page"></div>
+        </div>
+    </div>
+    <header>
+        <div class="logo">w</div>
+        <nav>
+            <a href="/">Browse</a>
+            <a href="/community">Community</a>
+            <input type="text" id="searchInput" placeholder="Search">
+            <a href="/write">Write</a>
+            <button class="premium">Try Premium</button>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="profile">👤</div>
+        </nav>
+    </header>
+    <main>
+        <section class="reader">
+            <h1 id="bookTitle"></h1>
+            <div class="reader-content" id="readerContent">
+                <!-- Populated by JavaScript -->
+            </div>
+            <button onclick="previousPage()">Previous</button>
+            <button onclick="nextPage()">Next</button>
+        </section>
+    </main>
+    <footer>
+        <p>BookWorm Originals | Try Premium | Get the App | Language | Writers | Brand Partnerships | Jobs | Press</p>
+        <p>Terms | Privacy | Payment Policy | Accessibility | Do Not Sell My Personal Information | Help | © 2025 BookWorm</p>
+    </footer>
+    <script src="/js/script.js"></script>
+    <script>
+        // Reader-specific script
+        let currentPage = 0;
+        let bookContent = [];
+        const contentDiv = document.getElementById('readerContent');
+        const titleDiv = document.getElementById('bookTitle');
+    
+        function loadBook(id) {
+            showLoading();
+            fetch(`http://localhost:3000/api/book/${id}`)
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Book data:', data); // Debug log
+                    if (data.error) {
+                        throw new Error(data.error + (data.details ? `: ${JSON.stringify(data.details)}` : ''));
+                    }
+                    titleDiv.textContent = data.volumeInfo?.title || 'Untitled';
+                    contentDiv.innerHTML = `<p>${data.volumeInfo?.description || 'No description available.'}</p>`;
+                    bookContent = data.searchInfo?.textSnippet ? [data.searchInfo.textSnippet] : ['No preview available.'];
+                    if (bookContent[0] === 'No preview available.') {
+                        contentDiv.innerHTML += `<p>${bookContent[0]}</p>`;
+                    }
+                    currentPage = 0;
+                    updateContent();
+                })
+                .catch(error => {
+                    console.error('Error loading book:', error);
+                    contentDiv.textContent = `Error loading book: ${error.message}`;
+                    hideLoading();
+                });
+        }
+    
+        function updateContent() {
+            if (bookContent[currentPage] !== 'No preview available.') {
+                contentDiv.innerHTML = `<p>${bookContent[currentPage]}</p>`;
+            }
+        }
+    
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updateContent();
+            }
+        }
+    
+        function nextPage() {
+            if (currentPage < bookContent.length - 1) {
+                currentPage++;
+                updateContent();
+            }
+        }
+    
+        // Load book based on URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookId = urlParams.get('id');
+        if (bookId) {
+            console.log('Loading book with ID:', bookId); // Debug log
+            loadBook(bookId);
+        } else {
+            contentDiv.textContent = 'No book ID provided.';
+        }
+    </script>
+</body>
+</html>

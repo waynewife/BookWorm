@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookWorm - Write</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-book">
+            <div class="book-page"></div>
+            <div class="book-page"></div>
+            <div class="book-page"></div>
+        </div>
+    </div>
+    <header>
+        <div class="logo">w</div>
+        <nav>
+            <a href="/">Browse</a>
+            <a href="/community">Community</a>
+            <input type="text" id="searchInput" placeholder="Search">
+            <a href="/write">Write</a>
+            <button class="premium">Try Premium</button>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="profile">👤</div>
+        </nav>
+    </header>
+    <main>
+        <section class="write">
+            <h1>Start Writing</h1>
+            <textarea placeholder="Write your story here..." style="width: 100%; height: 400px; padding: 10px;"></textarea>
+            <button onclick="alert('Story saved! (Placeholder)')">Save Story</button>
+        </section>
+    </main>
+    <footer>
+        <p>BookWorm Originals | Try Premium | Get the App | Language | Writers | Brand Partnerships | Jobs | Press</p>
+        <p>Terms | Privacy | Payment Policy | Accessibility | Do Not Sell My Personal Information | Help | © 2025 BookWorm</p>
+    </footer>
+    <script src="/js/script.js"></script>
+</body>
+</html>
