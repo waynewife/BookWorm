@@ -1,10 +1,20 @@
 import { Button } from '../components/ui/button';
 import { useTheme } from '../ThemeProvider';
 import { Toggle } from '../components/ui/toggle';
+import { useAuth } from '../AuthContext';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
   const { theme, toggleTheme } = useTheme();
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
@@ -17,11 +27,16 @@ export default function Home() {
           </nav>
         </div>
         <div className="flex items-center">
-          <Toggle onPressedChange={toggleTheme} pressed={theme === 'dark'}>
+          <button
+            onClick={toggleTheme}
+            className="px-3 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white"
+          >
             {theme === 'light' ? 'Dark' : 'Light'} Mode
-          </Toggle>
+          </button>
           <Link to="/login">
-            <Button className="ml-4">Login / Sign Up</Button>
+            <button className="ml-4 px-4 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-600">
+              Login / Sign Up
+            </button>
           </Link>
         </div>
       </header>
@@ -32,10 +47,14 @@ export default function Home() {
         </p>
         <img src="/devices.png" alt="Devices" className="mt-6 w-1/2" />
         <div className="mt-6 flex space-x-4">
-          <Button asChild>
-            <Link to="/browse">Start Reading</Link>
-          </Button>
-          <Button variant="outline">Start Writing</Button>
+          <Link to="/browse">
+            <button className="px-4 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-600">
+              Start Reading
+            </button>
+          </Link>
+          <button className="px-4 py-2 rounded-md border border-gray-300 hover:bg-gray-100">
+            Start Writing
+          </button>
         </div>
       </main>
     </div>
