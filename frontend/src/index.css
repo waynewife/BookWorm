@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('/OpenDyslexic-Regular.ttf') format('truetype');
+  src: url('OpenDyslexic-Regular.otf') format('opentype');
 }
 
 .font-dyslexic {

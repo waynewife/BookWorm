@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '../components/ui/button';
 import { useTheme } from '../ThemeProvider';
-import { Toggle } from '@/components/ui/toggle';
+import { Toggle } from '../components/ui/toggle';
 import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
