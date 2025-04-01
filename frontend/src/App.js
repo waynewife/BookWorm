@@ -14,15 +14,17 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/browse" element={<Browse />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/read" element={<Read />} />
-        </Routes>
+        <ThemeProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/read" element={<Read />} />
+          </Routes>
+        </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>
   );

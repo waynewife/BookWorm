@@ -1,6 +1,7 @@
+import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '/users/chand/OneDrive/Desktop/Projects/BookWorm3.0/frontend/src/AuthContext';
+import { useAuth } from '../AuthContext';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');

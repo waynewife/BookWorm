@@ -1,5 +1,6 @@
+import React from 'react';
 import { useTheme } from '../ThemeProvider';
-import { useAuth } from '/users/chand/OneDrive/Desktop/Projects/BookWorm3.0/frontend/src/AuthContext';
+import { useAuth } from '../AuthContext';
 import { Link } from 'react-router-dom';
 
 export default function Profile() {

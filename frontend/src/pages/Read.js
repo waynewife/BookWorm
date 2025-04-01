@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from '../components/ui/button';
 import { useTheme } from '../ThemeProvider';
 import { Toggle } from '../components/ui/toggle';
