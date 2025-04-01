@@ -1,4 +1,5 @@
 import { useTheme } from '../ThemeProvider';
+import { ThemeProvider } from '../ThemeProvider';
 import { useAuth } from '/users/chand/OneDrive/Desktop/Projects/BookWorm3.0/frontend/src/AuthContext';
 import { Link } from 'react-router-dom';
 

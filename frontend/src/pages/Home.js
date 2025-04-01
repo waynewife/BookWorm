@@ -1,7 +1,9 @@
+import React from 'react';
 import { Button } from '../components/ui/button';
 import { useTheme } from '../ThemeProvider';
+import { ThemeProvider } from '../ThemeProvider';
 import { Toggle } from '../components/ui/toggle';
-import { useAuth } from '../AuthContext';
+import { useAuth } from '/users/chand/OneDrive/Desktop/Projects/BookWorm3.0/frontend/src/AuthContext';
 import { Link } from 'react-router-dom';
 
 export default function Home() {

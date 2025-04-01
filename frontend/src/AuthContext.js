@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { auth } from '/users/chand/OneDrive/Desktop/Projects/BookWorm3.0/frontend/src/firebase/firebaseConfig.js';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { auth } from './firebase/firebaseConfig';
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 
 const AuthContext = createContext();

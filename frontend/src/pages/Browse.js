@@ -1,5 +1,6 @@
 import { Button } from '../components/ui/button';
 import { useTheme } from '../ThemeProvider';
+import { ThemeProvider } from '../ThemeProvider';
 import { Toggle } from '../components/ui/toggle';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
